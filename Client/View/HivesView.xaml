@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Client.View.FunnyHoneyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:client="clr-namespace:Client"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:Client.Properties"
+             xmlns:data="clr-namespace:Client.Data"
+             d:DataContext="{Binding Source={StaticResource {x:Static client:App.ViewModelLocatorResourceName}},
+                                     Path=FunnyHoneyViewModel}"
+             mc:Ignorable="d">
+    <ListView ItemsSource="{Binding Apiary.Hives}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView.ItemTemplate>
+            <DataTemplate DataType="data:Hive">
+                <Border Margin="5"
+                        Background="BurlyWood"
+                        Padding="4,3">
+                    <Grid Width="200">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontWeight="Bold"
+                                       Foreground="Red"
+                                       Text="{x:Static res:Resources.HiveTitleLabel}" />
+                            <TextBlock FontWeight="Bold"
+                                       Foreground="Red"
+                                       Text="{Binding Id}" />
+                        </StackPanel>
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{x:Static res:Resources.AmountOfHoneyInHiveLabel}" />
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="2"
+                                   Text="{Binding AmountOfHoney}" />
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="{x:Static res:Resources.TotalNumberOfBeesLabel}" />
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="2"
+                                   Text="{Binding TotalAmountOfBees}" />
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="0"
+                                   Text="{x:Static res:Resources.NumberOfBeesInsideHiveLabel}" />
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="2"
+                                   Text="{Binding AmountOfBeesInsideHive}" />
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="0"
+                                   Text="{x:Static res:Resources.WorkerBeesLabel}" />
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="2"
+                                   Text="{Binding AmountOfWorkerBees}" />
+                        <TextBlock Grid.Row="5"
+                                   Grid.Column="0"
+                                   Text="{x:Static res:Resources.QueensLabel}" />
+                        <TextBlock Grid.Row="5"
+                                   Grid.Column="2"
+                                   Text="{Binding AmountOfQueens}" />
+                        <TextBlock Grid.Row="6"
+                                   Grid.Column="0"
+                                   Text="{x:Static res:Resources.GuardsLabel}" />
+                        <TextBlock Grid.Row="6"
+                                   Grid.Column="2"
+                                   Text="{Binding AmountOfGuards}" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+    </ListView>
+</UserControl>
